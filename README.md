@@ -15,7 +15,7 @@ see support language. [Google Language Codes \- tomihasa](https://sites.google.c
 - **source_lang**: source language (string, default: `null`)
 - **target_lang**: target language (string, required)
 - **sleep**: delay per record, define milliseconds. (integer, default: 0)
-- **google_api_key**: google_api_key. support environment variable. pleaese `export GOOGLE_API_KEY`(string, default: `null`)
+- **google_api_key**: google_api_key. support environment variable. please `export GOOGLE_API_KEY`(string, default: `null`)
 
 ## Example
 
