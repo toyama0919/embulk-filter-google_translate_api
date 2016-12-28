@@ -82,7 +82,7 @@ Gem::Specification.new do |spec|
   spec.description   = %[Google Translate Api filter plugin for Embulk]
   spec.email         = ["toyama0919@gmail.com"]
   spec.licenses      = ["MIT"]
-  # TODO set this: spec.homepage      = "https://github.com/toyama0919/embulk-filter-google_translate_api"
+  spec.homepage      = "https://github.com/toyama0919/embulk-filter-google_translate_api"
 
   spec.files         = `git ls-files`.split("\n") + Dir["classpath/*.jar"]
   spec.test_files    = spec.files.grep(%r"^(test|spec)/")
