@@ -33,6 +33,10 @@ public class GoogleTranslateApiFilterPlugin implements FilterPlugin
         @Config("target_lang")
         public String getTargetLang();
 
+        @Config("model")
+        @ConfigDefault("null")
+        public Optional<String> getModel();
+
         @Config("google_api_key")
         @ConfigDefault("null")
         public Optional<String> getGoogleApiKey();

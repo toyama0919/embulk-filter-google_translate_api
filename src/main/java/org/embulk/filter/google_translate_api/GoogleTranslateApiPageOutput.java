@@ -2,6 +2,7 @@ package org.embulk.filter.google_translate_api;
 
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.embulk.config.TaskSource;
 import org.embulk.filter.google_translate_api.GoogleTranslateApiFilterPlugin.PluginTask;
 import org.embulk.spi.Column;
@@ -32,6 +33,7 @@ public class GoogleTranslateApiPageOutput implements PageOutput
     private final PageBuilder builder;
     private final Translate translate;
     private final TranslateOption srcLang;
+    private final TranslateOption model;
     
     private static final Logger logger = Exec.getLogger(GoogleTranslateApiFilterPlugin.class);
 
@@ -48,6 +50,7 @@ public class GoogleTranslateApiPageOutput implements PageOutput
         this.translate = createTranslateService();
 
         this.srcLang = task.getSourceLang().isPresent() ? TranslateOption.sourceLanguage(task.getSourceLang().get()) : null;
+        this.model = task.getModel().isPresent() ? TranslateOption.model(task.getModel().get()) : null;
     }
 
     @Override
@@ -90,7 +93,14 @@ public class GoogleTranslateApiPageOutput implements PageOutput
      * @return
      */
     private List<Translation> translate(List<String> texts) {
-        return (srcLang == null) ? translate.translate(texts) : translate.translate(texts, srcLang);
+        TranslateOption[] translateOptions = new TranslateOption[] {};
+        if (srcLang != null) {
+            translateOptions = ArrayUtils.add(translateOptions, srcLang);
+        }
+        if (model != null) {
+            translateOptions = ArrayUtils.add(translateOptions, model);
+        }
+        return (translateOptions.length == 0) ? translate.translate(texts) : translate.translate(texts, translateOptions);
     }
 
     /**
