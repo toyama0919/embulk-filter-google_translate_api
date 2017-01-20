@@ -100,7 +100,7 @@ public class GoogleTranslateApiPageOutput implements PageOutput
         if (model != null) {
             translateOptions = ArrayUtils.add(translateOptions, model);
         }
-        return (translateOptions.length == 0) ? translate.translate(texts) : translate.translate(texts, translateOptions);
+        return translate.translate(texts, translateOptions);
     }
 
     /**
